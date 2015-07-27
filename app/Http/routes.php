@@ -12,8 +12,9 @@
 */
 $app->group(['prefix' => '/api/v1', 'namespace' => 'App\Http\Controllers'], function() use($app) {
     define('HTTP_OK', 200);
-    define('HTTP_NOT_FOUND', 404);
+    define('HTTP_BAD_REQUEST', 400);
     define('HTTP_UNAUTHORIZED', 401);
+    define('HTTP_NOT_FOUND', 404);
     define('HTTP_SERVER_ERROR', 500);
 
     $app->get('/', function () use ($app) {

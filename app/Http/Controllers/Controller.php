@@ -15,6 +15,6 @@ class Controller extends BaseController
             'message' => $message
         ];
 
-        return $response;
+        return response()->json($response, $code);
     }
 }
