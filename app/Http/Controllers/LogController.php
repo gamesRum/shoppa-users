@@ -7,17 +7,10 @@
     use Illuminate\Http\Request;
 
     class LogController extends Controller {
+
         public function index() {
-            $response = null;
             $logs = Log::all();
-
-            if($logs->isEmpty()) {
-                $response = $this->getJSON(HTTP_NOT_FOUND, 'error', 'No logs found.');
-            } else {
-                $response = $this->getJSON(HTTP_OK, 'success', $logs->count().' logs found.', $logs, $logs->count());
-            }
-
-            return $response;
+            return $this->getIndex($logs,'users');
         }
 
         public function create(Request $request) {
@@ -47,14 +40,8 @@
         }
 
         public function read($id) {
-            $response = null;
-
-            if($log = Log::find($id)) {
-                $response = $this->getJSON(HTTP_OK, 'success', 'Log found: '.$log->user_id, $log);
-            } else {
-                $response = $this->getJSON(HTTP_NOT_FOUND, 'error', 'Log #'.$id.' - Not found.');
-            }
-
-            return $response;
+            $logs = Log::all();
+            $find = Log::find($id);
+            return $this->getRead($logs, 'users', $id, $find,$logs->user_id);
         }
     }

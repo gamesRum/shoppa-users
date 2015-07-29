@@ -8,16 +8,8 @@
 
     class UserController extends Controller {
         public function index() {
-            $response = null;
             $users = User::all();
-
-            if($users->isEmpty()) {
-                $response = $this->getJSON(HTTP_NOT_FOUND, 'error', 'No users found.');
-            } else {
-                $response = $this->getJSON(HTTP_OK, 'success', $users->count().' users found.', $users, $users->count());
-            }
-
-            return $response;
+            return $this->getIndex($users,'users');
         }
 
         public function create(Request $request) {
