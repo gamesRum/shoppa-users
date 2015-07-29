@@ -27,4 +27,8 @@ $app->group(['prefix' => '/api/v1', 'namespace' => 'App\Http\Controllers'], func
     $app->put('user/{id}', 'UserController@update');
     $app->delete('user/{id}', 'UserController@delete');
 
+    $app->get('log', 'LogController@index');
+    $app->post('log', 'LogController@create');
+    $app->get('log/{id}', 'LogController@read');
+
 });
